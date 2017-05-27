@@ -1,5 +1,19 @@
 #!/bin/python
 # -*- coding: utf-8 -*-
+
+######################################################################
+###                                                                ###
+###  Description: Functions for encrypting and decrypting using    ###
+###               the random substitution cipher method. The       ###
+###               encryption method writes to a txt file that      ###
+###               formats encryption string:key. This file can     ###
+###               then be read by the decrypt_by_file function.    ###
+###                                                                ###
+######################################################################
+
+__author__  = "Tyler Hall"
+__copyright__ = "Copyright 2017"
+
 ###################
 #     IMPORTS     #
 ###################
@@ -68,9 +82,12 @@ key_dic = {'a' : '0',
                 }
 
 ###################
-#      METHODS    #
+#     Functions   #
 ###################
 # Method: Writes the encrypted string and the key to a file
+# Param: string : encrypted string,
+#        key : encrypting key,
+#        filepath (optional) : path to where text will be saved
 # Returns: Nothing
 def write_to_file(string, key, filepath = './substitution_ciphers.txt'):
     # Either Creates file, Writes to an emtpy file, or Appends to a file
@@ -85,6 +102,8 @@ def write_to_file(string, key, filepath = './substitution_ciphers.txt'):
     target.close()
 
 # Method: Takes the raw string and creates an encrypted string as well as writes to a file
+# Param: raw : Plain text
+#        key : encrypting key
 # Returns: Encrypted String
 def encrypt(raw, key):
     #Variables
@@ -111,19 +130,22 @@ def encrypt(raw, key):
     return encrypt_string
 
 # Method: Takes a file and decrypts the entire file with the encrypted string:key format
+# Param: filename : the path to the file with the encrypted string
 # Returns: Array of decrypted Messages
-def decrypt_by_file(filename):
+def decrypt_by_file(filepath):
     # Variables
     my_messages = []
 
     # Opens File that has encrypted string
-    with open(filename) as f:
+    with open(filepath) as f:
         for line in f:
             line_stripped = line.rstrip()
             encrypted, key = line_stripped.split(':')
             my_messages.append(decrypt(encrypted, key))
 
 # Method: Takes the encrypted string and the key to return the decrypted string
+# Param: encrypted : the encrypted string
+#        key : encrypting key
 # Returns: Decrypted String
 def decrypt(encrypted, key):
     # Variables
@@ -148,6 +170,7 @@ def decrypt(encrypted, key):
     return decrypt_string
 
 # Method: Returns a random order alphabet key
+# Param: NONE
 # Returns: Key String
 def gen_key():
     alpha = list(alphabet)

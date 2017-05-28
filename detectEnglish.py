@@ -52,7 +52,7 @@ def get_english_count(message):
         return 0.0
 
     matches = 0
-    for word in possibleWords:
+    for word in possible_words:
         if word in ENGLISH_WORDS:
             matches += 1
     return float(matches) / len(possible_words)
@@ -73,7 +73,7 @@ def rm_non_alpha(message):
 #        letterPercentage (default: 85%) : characters in the message must be letters / spaces
 # Returns: Boolean of True or False
 def isEnglish(message, wordPercentage=20, letterPercentage=85):
-    wordsMatch = getEnglishcount(message) * 100 >= wordPercentage
+    wordsMatch = get_english_count(message) * 100 >= wordPercentage
     numLetters = len(rm_non_alpha(message))
     messageLettersPercentage = float(numLetters) / len(message) * 100
     lettersMatch = messageLettersPercentage >= letterPercentage

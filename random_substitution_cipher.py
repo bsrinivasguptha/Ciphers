@@ -83,7 +83,7 @@ freq_letter = {'e' : 12.702,
                 }
 
 ###################
-#     Functions   #
+#     FUNCTIONS   #
 ###################
 # Method: Writes the encrypted string and the key to a file
 # Param: string : encrypted string,
